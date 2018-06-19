@@ -1,0 +1,7 @@
+Package: mypackage
+Type: Package
+Title: demo package
+Version: 0.1.0
+Maintainer: The package maintainer <yourself@somewhere.net>
+Depends: dplyr
+Encoding: UTF-8

@@ -1,0 +1,12 @@
+FROM rocker/rstudio:3.5.0
+
+RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
+ libsasl2-dev \
+ libssh2-1-dev \
+ zlib1g-dev \
+ git
+
+RUN R -e 'install.packages(c( \
+ "devtools", \
+ "dplyr" \
+))'

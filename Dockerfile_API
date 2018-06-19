@@ -1,0 +1,14 @@
+FROM rocker/r-base:latest
+
+RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing\
+ libssl-dev \
+ libsasl2-dev \
+ libcurl4-openssl-dev
+
+RUN R -e 'install.packages(c("devtools", "dplyr" , "plumber"))'
+
+ADD . /home/docker/
+
+RUN R -e 'devtools::install_local("/home/docker/")'
+
+CMD R -e 'api <- plumber::plumb("/home/docker/API.R"); api$run(port=8000, host = "0.0.0.0")'
